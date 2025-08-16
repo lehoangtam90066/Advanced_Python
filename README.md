@@ -1,2 +1,2 @@
 # Advanced_Python
-Advanced_Python
+Class Exercises
