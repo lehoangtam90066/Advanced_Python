@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Comment Section</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>💬 Share Your Thoughts</h1>
+
+      <!-- Form đăng bình luận -->
+      <form action="/" method="POST" class="comment-form">
+        <input type="text" name="name" placeholder="Enter your name" required />
+        <textarea
+          name="comment"
+          placeholder="Write your comment here..."
+          required
+        ></textarea>
+        <button type="submit">Post Comment</button>
+      </form>
+
+      <h2>Recent Comments</h2>
+      <div class="comment-list">
+        {% for comment in comments %}
+        <div class="comment">
+          <div class="avatar">
+            <img
+              src="{{ url_for('static', filename='default-avatar.png') }}"
+              alt="User Avatar"
+            />
+          </div>
+          <div class="comment-content">
+            <p class="comment-name">{{ comment.name }}</p>
+            <p class="comment-text">{{ comment.comment }}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,135 @@
+/* Reset styling */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to right, #e2e2e2, #ffffff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 700px;
+    width: 100%;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    color: #444;
+    transition: transform 0.3s;
+}
+
+.container:hover {
+    transform: scale(1.02);
+}
+
+h1 {
+    font-size: 28px;
+    color: #4a90e2;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h2 {
+    margin-top: 30px;
+    color: #333;
+    font-size: 22px;
+    border-bottom: 2px solid #4a90e2;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+/* Comment form styling */
+.comment-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-form input[type="text"],
+.comment-form textarea {
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 16px;
+    color: #333;
+    transition: border 0.3s;
+}
+
+.comment-form input[type="text"]:focus,
+.comment-form textarea:focus {
+    border: 1px solid #4a90e2;
+    outline: none;
+}
+
+.comment-form button {
+    padding: 12px;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #4a90e2;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.comment-form button:hover {
+    background-color: #357abd;
+}
+
+/* Comment list styling */
+.comment-list {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.comment {
+    display: flex;
+    align-items: flex-start;
+    padding: 15px;
+    border: 1px solid #e1e1e1;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    background-color: #f9fafc;
+    transition: background-color 0.3s;
+}
+
+.comment:hover {
+    background-color: #f0f4ff;
+}
+
+.avatar {
+    width: 60px;
+    height: 60px;
+    margin-right: 15px;
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid #4a90e2;
+}
+
+.comment-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-name {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.comment-text {
+    color: #666;
+    line-height: 1.5;
+}

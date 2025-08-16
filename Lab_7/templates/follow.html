@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Follow/Unfollow</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f4f4f9;
+      }
+      .container {
+        text-align: center;
+      }
+      .follow-button {
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #fff;
+        background-color: #1da1f2;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      .follow-button.unfollow {
+        background-color: #e0245e;
+      }
+      .follow-button:hover {
+        opacity: 0.9;
+      }
+      h1 {
+        font-size: 24px;
+        color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>
+        {{ 'You are following this page!' if is_following else 'You are not
+        following this page.' }}
+      </h1>
+      <form method="POST" action="{{ url_for('toggle_follow') }}">
+        <button
+          type="submit"
+          class="follow-button {% if is_following %}unfollow{% endif %}"
+        >
+          {{ 'Unfollow' if is_following else 'Follow' }}
+        </button>
+      </form>
+    </div>
+  </body>
+</html>

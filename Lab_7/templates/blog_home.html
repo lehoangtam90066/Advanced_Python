@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Van lang club</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <header>
+      <h1>Van Lang Internet</h1>
+    </header>
+    <div class="container">
+      <form class="blog-form" method="POST" action="/post">
+        <input type="text" name="title" placeholder="Title" required />
+        <textarea
+          name="content"
+          placeholder="Content"
+          rows="5"
+          required
+        ></textarea>
+        <select name="category" required>
+          <option value="" disabled selected>Select Category</option>
+          <option value="Technology">Technology</option>
+          <option value="Lifestyle">Lifestyle</option>
+          <option value="Education">Education</option>
+          <option value="Health">Health</option>
+        </select>
+        <button type="submit">Đăng</button>
+      </form>
+
+      <h2>Xem bài</h2>
+      <div id="posts" class="posts-container">
+        {% for post in posts %}
+        <div class="post">
+          <h3>{{ loop.index }}. {{ post.title }}</h3>
+          <p><strong>Category:</strong> {{ post.category }}</p>
+          <p>{{ post.content }}</p>
+          <a href="{{ url_for('edit_post', post_id=post.id) }}">Edit</a>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </body>
+</html>

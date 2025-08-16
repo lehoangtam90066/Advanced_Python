@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Văn lang Internet</title>
+    <style>
+      /* Tương tự như style đã thêm trước đó */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        color: #333;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+      }
+
+      .container {
+        width: 90%;
+        max-width: 800px;
+        margin: 20px auto;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+      }
+
+      h1 {
+        text-align: center;
+        color: #333;
+      }
+
+      .post-form,
+      .comment-form {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 20px;
+      }
+
+      .post-form input[type="text"],
+      .post-form textarea,
+      .comment-form textarea {
+        width: 100%;
+        padding: 10px;
+        font-size: 1em;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
+
+      .post-form button,
+      .comment-form button {
+        width: 100px;
+        padding: 10px;
+        font-size: 1em;
+        color: #fff;
+        background-color: #28a745;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        align-self: flex-end;
+      }
+
+      .post-form button:hover,
+      .comment-form button:hover {
+        background-color: #218838;
+      }
+
+      .post {
+        border: 1px solid #ddd;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+      }
+
+      .post h2 {
+        color: #555;
+        margin-top: 0;
+      }
+
+      .post p {
+        font-size: 1em;
+        line-height: 1.6;
+      }
+
+      .comments {
+        margin-top: 10px;
+      }
+
+      .comments h3 {
+        margin-top: 0;
+        color: #333;
+      }
+
+      .comments ul {
+        list-style-type: none;
+        padding-left: 0;
+      }
+
+      .comments li {
+        background-color: #f8f9fa;
+        padding: 8px;
+        border-radius: 4px;
+        margin-bottom: 5px;
+        font-size: 0.9em;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .comment-actions {
+        display: flex;
+        gap: 5px;
+      }
+
+      .comment-actions form {
+        display: inline;
+      }
+
+      .edit-comment-form {
+        display: none;
+        margin-top: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Văn lang hóng chuyện</h1>
+
+      <!-- Form tạo bài đăng mới -->
+      <form action="/post" method="POST" class="post-form">
+        <input type="text" name="title" placeholder="Tiêu đề" required />
+        <textarea
+          name="content"
+          placeholder="Nội dung bài đăng"
+          rows="4"
+          required
+        ></textarea>
+        <button type="submit">Đăng bài</button>
+      </form>
+
+      <!-- Hiển thị các bài đăng và khung bình luận -->
+      {% for post in posts %}
+      <div class="post">
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.content }}</p>
+
+        <!-- Hiển thị các bình luận -->
+        <div class="comments">
+          <h3>Bình luận:</h3>
+          <ul>
+            {% for comment in post.comments %}
+            <li>
+              {{ comment }}
+              <div class="comment-actions">
+                <!-- Nút Chỉnh sửa bình luận -->
+                <button
+                  onclick="toggleEditForm('{{ loop.index0 }}', '{{ loop.index }}')"
+                >
+                  Chỉnh sửa
+                </button>
+
+                <!-- Nút Xóa bình luận -->
+                <form
+                  action="/delete_comment/{{ loop.index0 }}/{{ loop.index0 }}"
+                  method="POST"
+                >
+                  <button type="submit">Xóa</button>
+                </form>
+              </div>
+
+              <!-- Form ẩn để chỉnh sửa bình luận -->
+              <form
+                action="/edit_comment/{{ loop.index0 }}/{{ loop.index }}"
+                method="POST"
+                class="edit-comment-form"
+                id="edit-form-{{ loop.index0 }}-{{ loop.index }}"
+              >
+                <textarea name="new_comment" rows="2" required>
+{{ comment }}</textarea
+                >
+                <button type="submit">Lưu</button>
+              </form>
+            </li>
+            {% endfor %}
+          </ul>
+
+          <!-- Form đăng bình luận -->
+          <form
+            action="/comment/{{ loop.index0 }}"
+            method="POST"
+            class="comment-form"
+          >
+            <textarea
+              name="comment"
+              placeholder="Viết bình luận..."
+              rows="3"
+              required
+            ></textarea>
+            <button type="submit">Gửi</button>
+          </form>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <script>
+      function toggleEditForm(postId, commentId) {
+        var editForm = document.getElementById(
+          `edit-form-${postId}-${commentId}`
+        );
+        editForm.style.display =
+          editForm.style.display === "none" ? "block" : "none";
+      }
+    </script>
+  </body>
+</html>

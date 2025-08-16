@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thông tin của bạn</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Thông tin của bạn</h1>
+      <div class="profile">
+        <img src="{{ user.avatar }}" alt="Avatar" class="avatar" />
+        <div class="details">
+          <p><strong>Tên:</strong> {{ user.name }}</p>
+          <p><strong>Email:</strong> {{ user.email }}</p>
+          <p><strong>Tuổi:</strong> {{ user.age }}</p>
+          <p><strong>Tiểu sử:</strong> {{ user.bio }}</p>
+          <p><strong>Số người theo dõi:</strong> {{ user.follower_count }}</p>
+        </div>
+      </div>
+
+      <h2>Trang có thể follow</h2>
+      <ul class="page-list">
+        {% for page in pages %}
+        <li>
+          <div class="page-info">
+            <span class="page-name">{{ page.name }}</span>
+            <span class="page-category">{{ page.category }}</span>
+          </div>
+          <a
+            href="{{ url_for('follow_page', page_name=page.name) }}"
+            class="btn"
+            >Follow</a
+          >
+        </li>
+        {% endfor %}
+      </ul>
+
+      <a href="{{ url_for('following') }}" class="btn view-following"
+        >Xem các trang đã follow</a
+      >
+    </div>
+  </body>
+</html>

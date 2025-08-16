@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Danh sách trang đã follow</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Trang đã theo dõi</h1>
+      <ul class="page-list">
+        {% for page in following %}
+        <li>
+          <div class="page-info">
+            <span class="page-name">{{ page.name }}</span>
+            <span class="page-category">{{ page.category }}</span>
+          </div>
+          <a
+            href="{{ url_for('unfollow_page', page_name=page.name) }}"
+            class="btn unfollow"
+            >Unfollow</a
+          >
+        </li>
+        {% else %}
+        <p>Bạn chưa theo dõi trang nào.</p>
+        {% endfor %}
+      </ul>
+      <a href="{{ url_for('profile') }}" class="btn view-profile"
+        >Quay lại trang cá nhân</a
+      >
+    </div>
+  </body>
+</html>
