@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flask with Bootstrap</title>
+    <!-- Sử dụng Bootstrap từ Flask-Bootstrap -->
+    {{ bootstrap.load_css() }}
+  </head>
+  <body>
+    <div class="container">
+      <h1>Chào mừng đến với Flask-Bootstrap!</h1>
+      <p>Đây là ví dụ đơn giản sử dụng Flask và Bootstrap.</p>
+    </div>
+
+    <!-- Tải Bootstrap JS -->
+    {{ bootstrap.load_js() }}
+  </body>
+</html>

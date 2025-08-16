@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask Static Example</title>
+    
+    <!-- Liên kết đến file CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    
+    <!-- Icon website -->
+    <link rel="icon" href="{{ url_for('static', filename='img/logo.png') }}">
+</head>
+<body>
+    <header>
+        <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo">
+        <h1>Xin chào Việt Nam </h1>
+    </header>
+    
+    <section>
+        <p>Đại học Văn Lang</p>
+    </section>
+
+    <!-- Liên kết đến file JavaScript -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
