@@ -1,0 +1,32 @@
+import tkinter as tk
+from tkinter import ttk
+win = tk.Tk()
+win.title("Lê Hoàng Tâm")
+ttk.Label(win, text="Enter a name:").grid(column=0, row=0)
+name = tk.StringVar()
+name_entered = ttk.Entry(win, width=12, textvariable=name)
+name_entered.grid(column=0, row=1)
+ttk.Label(win, text="Choose a number:").grid(column=1, row=0)
+number = tk.StringVar()
+number_chosen = ttk.Combobox(win, width=12, textvariable=number)
+number_chosen['values'] = (1, 2, 4, 42, 100)
+number_chosen.grid(column=1, row=1)
+number_chosen.current(3) 
+action = ttk.Button(win, text="Click Me!")
+action.grid(column=2, row=1)
+def disable_button():
+    if disabled.get():
+        action.state(['disabled'])
+    else:
+        action.state(['!disabled'])
+disabled = tk.IntVar()
+checkbox1 = tk.Checkbutton(win, text="Disabled", variable=disabled, command=disable_button)
+checkbox1.grid(column=0, row=2, sticky=tk.W)
+unchecked = tk.IntVar()
+checkbox2 = tk.Checkbutton(win, text="UnChecked", variable=unchecked)
+checkbox2.grid(column=1, row=2, sticky=tk.W)
+enabled = tk.IntVar(value=1)
+checkbox3 = tk.Checkbutton(win, text="Enabled", variable=enabled)
+checkbox3.grid(column=2, row=2, sticky=tk.W)
+name_entered.focus()
+win.mainloop()
